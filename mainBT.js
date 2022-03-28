@@ -178,26 +178,69 @@ document.getElementById("btnSSAD").onclick = function () {
 };
 
 
+
 //bài tập 6:
 
 function getEle (id){
     return document.getElementById(id);
 }
 
-getEle ("btnDoiVT").onclick = function () {
-for (i=0; i< numberList.length -1; i++){
+getEle("btnNhapVT").onclick = function (){   ///đối số
+    var x = getEle('txtNhapvt1').value*1;
+    var y = getEle('txtNhapvt2').value*1;
+    console.log('vị trí '+ x, 'vị trí '+y);
+    doiViTri (x, y);
+}
+
+
+function doiViTri (a, b){
+    for (var i=0; i< numberList.length; i++){
+        for(var j=0; j<numberList.length; j++){
+            if(i ==a && j==b){
+                [numberList[i], numberList[j]] = [numberList[j],numberList[i]];
+            }
+        }
+    }
+    return numberList;
     
 }
-    var temp = numberList[a];
-    numberList[a] = numberList[b]
-    numberList[a] = temp;
 
+
+getEle ("btnDoiVT").onclick = function () {
+    var kQDoi = doiViTri ();
+    getEle('footerCard').innerHTML='kết quả hoán đổi 2 phần từ: '+kQDoi;
+ }
+
+
+ //bài tập 9
+
+ var numberList2 = [];
+
+ getEle ("btnThemSoThuc").onclick = function () {
+    var number2 = getEle ("txtNhapSoThuc").value*1;
+    // thêm số thực vào mảng
+    numberList2.push(number2);
+    console.log(numberList2);
+
+    getEle("footerCard2").innerHTML=numberList2;
 }
 
+//tìm số nguyên
+getEle ("btnDemSoNguyen").onclick = function () {
+    var kqNguyen;
+    var countSoNguyen=0;
+    for(var i=0;i<numberList2.length; i++ ){
+        if( Number.isInteger(numberList2[i])== true){
 
-function nhapViTri (){
-    getEle("btnDoiVT").onclick = function (){
-        var a= getEle('txtNhapvt1').value;
-        var b= dgetEle('txtNhapvt2').value;
+            countSoNguyen++;
+
+        }
     }
+
+    console.log('số lượng số nguyên: ', countSoNguyen );
+    kqNguyen= countSoNguyen+ (numberList.length)*1;
+
+    getEle('footerCard2').innerHTML='số lượng số nguyên trong mảng: '+ kqNguyen;
+
+    
 }
